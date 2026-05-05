@@ -10,6 +10,10 @@ public class CommandManager {
 
     public CommandManager() {
         registerCommand(new PingCommand());
+        registerCommand(new HelpCommand());
+        registerCommand(new MercyCommand());
+        registerCommand(new JokeCommand());
+        registerCommand(new PollCommand());
     }
 
     private void registerCommand(ICommand command) {
@@ -20,6 +24,9 @@ public class CommandManager {
         ICommand cmd = commands.get(commandName.toLowerCase());
         if (cmd != null) {
             cmd.execute(event, args);
+        }
+        else {
+            event.getChannel().sendMessage("La vie j'ai pas `" + commandName + "`, tu t'es trompé de commande frérot.").queue();
         }
     }
 }
